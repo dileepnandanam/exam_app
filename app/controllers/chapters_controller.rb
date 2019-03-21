@@ -6,5 +6,7 @@ class ChaptersController < ApplicationController
 
   def find_parents
     @topic = Topic.find(params[:topic_id])
+    @subject = @topic.subject
+    @exam = @subject.exam
   end
 end

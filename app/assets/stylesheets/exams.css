@@ -1,0 +1,21 @@
+.hierarchy-item {
+	border: 1px solid;
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+.side-nav {
+	display: inline-flex;
+	width: 60%;
+}
+.hierarchy {
+	width: 20%;
+	padding: 5px;
+}
+.questions {
+	width: 40%;
+}
+.current {
+	background-color: #fee;
+}

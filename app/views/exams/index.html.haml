@@ -1,0 +1,12 @@
+.side-nav.pull-left
+  .hierarchy.exams.pull-left
+    - @exams.each do |exam|
+      = link_to exam_subjects_path(exam), remote: true, class: 'open-hierarchy', data: {target: 'subjects'} do
+        .hierarchy-item
+          = exam.name
+  .hierarchy.subjects.pull-left
+  .hierarchy.topics.pull-left
+  .hierarchy.chapters.pull-left
+  .clearfix
+.questions
+.clearfix

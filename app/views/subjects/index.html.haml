@@ -1,0 +1,4 @@
+- @subjects.each do |subject|
+  = link_to exam_subject_topics_path(@exam, subject), remote: true, class: 'open-hierarchy', data: {target: 'topics'} do
+    .hierarchy-item
+      = subject.name
