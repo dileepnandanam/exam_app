@@ -1,4 +1,7 @@
+
 - @chapters.each do |chapter|
-  = link_to exam_subject_topic_chapter_questions_path(@exam, @subject, @topic, chapter), remote: true, class: 'open-hierarchy', data: {target: 'questions'} do
-    .hierarchy-item
-      = chapter.name
+  .hierarchy-item
+    .item-name
+      = link_to chapter.name, exam_subject_topic_chapter_questions_path(@exam, @subject, @topic, chapter), remote: true, class: 'open-hierarchy', data: {target: 'questions'}
+    .actions
+      = link_to 'random questions', random_questions_exams_path(item_type: 'chapter', item_id: chapter.id), remote: true, class: 'open-hierarchy', data: {target: 'questions'}

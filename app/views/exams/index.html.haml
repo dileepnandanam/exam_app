@@ -1,9 +1,11 @@
 .side-nav.pull-left
   .hierarchy.exams.pull-left
     - @exams.each do |exam|
-      = link_to exam_subjects_path(exam), remote: true, class: 'open-hierarchy', data: {target: 'subjects'} do
-        .hierarchy-item
-          = exam.name
+      .hierarchy-item
+        .item-name
+          = link_to exam.name, exam_subjects_path(exam), remote: true, class: 'open-hierarchy', data: {target: 'subjects'}
+        .actions
+          = link_to 'random questions', random_questions_exams_path(item_type: 'exam', item_id: exam.id), remote: true, class: 'open-hierarchy', data: {target: 'questions'}
   .hierarchy.subjects.pull-left
   .hierarchy.topics.pull-left
   .hierarchy.chapters.pull-left

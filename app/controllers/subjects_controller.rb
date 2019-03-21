@@ -5,6 +5,7 @@ class SubjectsController < ApplicationController
     render 'index', layout: false
   end
 
+  protected
   def find_parents
     @exam = Exam.find(params[:exam_id])
   end

@@ -3,6 +3,6 @@ $(document).on('turbolinks:load', function() {
 		target = $(this).data('target')
 		$('.' + target).html(data)
 		$(this).closest('.hierarchy').find('.hierarchy-item').removeClass('current')
-		$(this).find('.hierarchy-item').addClass('current')
+		$(this).closest('.hierarchy-item').addClass('current')
 	})
 })

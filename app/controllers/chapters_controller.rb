@@ -5,6 +5,7 @@ class ChaptersController < ApplicationController
     render 'index', layout: false
   end
 
+  protected
   def find_parents
     @topic = Topic.find(params[:topic_id])
     @subject = @topic.subject
