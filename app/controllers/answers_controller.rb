@@ -2,7 +2,9 @@ class AnswersController < ApplicationController
   def create
     answer_params = params.require(:answer).permit(:option_id, :question_id)
     @answer = Answer.new(answer_params.merge(user_id: current_user.id))
-    if @answer.save
+    if Answer.where(question_id: answer_params[:question_id], user_id: current_user.id).first.present?
+      render head: :ok, status: 422
+    elsif @answer.save
       delete_skip_response(answer_params[:question_id])
       render 'create', layout: false
     else
