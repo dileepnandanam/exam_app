@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :exams do
   	get :random_questions, on: :collection
+  	get :progress, on: :collection
   	resources :subjects do
       resources :topics do
         resources :chapters do

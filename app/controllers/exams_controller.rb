@@ -17,6 +17,25 @@ class ExamsController < ApplicationController
     render 'questions/index', layout: false
   end
 
+  def progress
+    @total_questions = questions_scop.count
+    @unseen_questions = questions_scop
+      .joins("left join answers on questions.id = answers.question_id and answers.user_id = #{current_user.id}")
+      .where('answers.id is NULL').count.to_f * 100 / @total_questions
+    @skipped_questions = questions_scop
+      .joins("inner join answers on questions.id = answers.question_id and answers.user_id = #{current_user.id}")
+      .where(answers: {skipped: true}).count.to_f * 100 / @total_questions
+    @correct_answers = questions_scop
+      .joins("inner join answers on questions.id = answers.question_id and answers.user_id = #{current_user.id}")
+      .joins('inner join options on questions.id = options.question_id and answers.option_id = options.id')
+      .where(options: {correct: true}).count('distinct(questions.id)').to_f * 100 / @total_questions
+    @wrong_answers = questions_scop
+      .joins("inner join answers on questions.id = answers.question_id and answers.user_id = #{current_user.id}")
+      .joins('inner join options on questions.id = options.question_id and answers.option_id = options.id')
+      .where(options: {correct: false}).count('distinct(questions.id)').to_f * 100 / @total_questions
+    render 'progress', layout: false
+  end
+
   protected
   def questions_scop
     id = params[:item_id]

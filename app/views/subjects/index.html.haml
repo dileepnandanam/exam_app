@@ -4,3 +4,4 @@
       = link_to subject.name, exam_subject_topics_path(@exam, subject), remote: true, class: 'open-hierarchy', data: {target: 'topics'}
     .actions
       = link_to 'random questions', random_questions_exams_path(item_type: 'subject', item_id: subject.id), remote: true, class: 'open-hierarchy', data: {target: 'questions'}
+      = link_to 'show progress', progress_exams_path(item_type: 'subject', item_id: subject.id), remote: true, class: 'open-hierarchy', data: {target: 'progress-values'}

@@ -19,3 +19,22 @@
 .current {
 	background-color: #fee;
 }
+.actions {
+	display: inline-flex;
+}
+.item-name {
+	font-size: 22px;
+}
+.progress-values {
+	width: 100%;
+	display: inline-flex;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.progress-item {
+	width: 24%;
+	text-align: center;
+}
+.progress-value {
+	font-size: 30px;
+}

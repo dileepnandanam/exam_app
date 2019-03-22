@@ -1,0 +1,20 @@
+.progress-item.unseeen-questions
+  .progress-name
+    unseen questions
+  .progress-value
+    = "#{@unseen_questions.round(2)}%"
+.progress-item.skipped-questions
+  .progress-name
+    skipped questions
+  .progress-value
+    = "#{@skipped_questions.round(2)}%"
+.progress-item.correct-answers
+  .progress-name
+    correct answers
+  .progress-value
+    = "#{@correct_answers.round(2)}%"
+.progress-item.wrong-answers
+  .progress-name
+    wrong answers
+  .progress-value
+    = "#{@wrong_answers.round(2)}%"
