@@ -14,4 +14,7 @@ Rails.application.routes.draw do
       end
   	end
   end
+  resources :answers do
+    post :skip, on: :collection
+  end
 end

@@ -1,2 +1,6 @@
 .question
-  = question.name
+  = simple_form_for (@answer || Answer.new), remote: true do |f|
+    = f.hidden_field :question_id, value: question.id
+    = f.input :option_id, label: question.name, collection: question.options.map{|o| [o.name, o.id]}, as: :radio_buttons
+    = f.submit 'answer'
+  = link_to 'skip', skip_answers_path(question_id: question.id), method: :post, remote: true, class: 'skip-answer'
