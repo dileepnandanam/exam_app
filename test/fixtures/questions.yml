@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  chapter_id: 1
+  name: Question 1
+  chapter: one
 
 two:
-  name: MyString
-  chapter_id: 1
+  name: Question 2
+  chapter: one
