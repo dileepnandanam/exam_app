@@ -2,7 +2,7 @@ class AnswersController < ApplicationController
   def create
     answer_params = params.require(:answer).permit(:option_id, :question_id)
     @answer = Answer.new(answer_params.merge(user_id: current_user.id))
-    if Answer.where(question_id: answer_params[:question_id], user_id: current_user.id).first.present?
+    if Answer.where(question_id: answer_params[:question_id], user_id: current_user.id, skipped: false).first.present?
       render head: :ok, status: 422
     elsif @answer.save
       delete_skip_response(answer_params[:question_id])
@@ -15,10 +15,10 @@ class AnswersController < ApplicationController
 
   def skip
     answer_params = params.permit(:question_id)
-    Answer.create(answer_params.merge({
+    Answer.where(answer_params.merge({
       user_id: current_user.id,
       skipped: true
-    }))
+    })).first_or_initialize.save
     render 'skip', layout: false
   end
 
