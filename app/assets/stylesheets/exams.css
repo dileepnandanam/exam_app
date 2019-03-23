@@ -13,8 +13,18 @@
 	width: 25%;
 	padding: 5px;
 }
+.actions a:first-child {
+	margin-right: 10px; 
+}
 .questions {
 	width: 40%;
+	margin: 10px 0 0 20px;
+}
+.question {
+	margin-bottom: 16px;
+    border: 1px solid saddlebrown;
+    padding: 10px;
+    border-radius: 8px;
 }
 .current {
 	background-color: #d9d9f3;
