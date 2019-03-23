@@ -1,4 +1,8 @@
 User.create(email: "dileep@gmail.com", password: "123456", password_confirmation: "123456")
+User.create(email: "murtuza@f22labs.com", password: "123456", password_confirmation: "123456")
+User.create(email: "nirav@f22labs.com", password: "123456", password_confirmation: "123456")
+User.create(email: "pradeep@f22labs.com", password: "123456", password_confirmation: "123456")
+User.create(email: "shiva@f22labs.com", password: "123456", password_confirmation: "123456")
 
 exam = Exam.create(name: "Exam 1")
   subject = Subject.create(name: "Subject 1", exam: exam)
