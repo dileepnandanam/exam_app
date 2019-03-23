@@ -10,6 +10,7 @@ class ExamsControllerTest < ActionDispatch::IntegrationTest
   test "progress should generate correct values for exam" do
     exam = exams(:one)
     Answer.create(question: questions(:one), user: users(:one), option: options(:one))
+    View.create(question: questions(:one), user: users(:one))
     get progress_exams_path(item_type: 'exam', item_id: exam.id)
     assert_equal controller.instance_variable_get(:@unseen_questions), 50
     assert_equal controller.instance_variable_get(:@skipped_questions), 0
@@ -22,7 +23,7 @@ class ExamsControllerTest < ActionDispatch::IntegrationTest
     subject = subjects(:one)
     Answer.create(question: questions(:one), user: users(:one), option: options(:correct))
     get progress_exams_path(item_type: 'subject', item_id: subject.id)
-    assert_equal controller.instance_variable_get(:@unseen_questions), 50
+    assert_equal controller.instance_variable_get(:@unseen_questions), 100
     assert_equal controller.instance_variable_get(:@skipped_questions), 0
     assert_equal controller.instance_variable_get(:@correct_answers), 50
     assert_equal controller.instance_variable_get(:@wrong_answers), 0
@@ -33,7 +34,7 @@ class ExamsControllerTest < ActionDispatch::IntegrationTest
     topic = topics(:one)
     Answer.create(question: questions(:one), user: users(:one), skipped: true)
     get progress_exams_path(item_type: 'topic', item_id: topic.id)
-    assert_equal controller.instance_variable_get(:@unseen_questions), 50
+    assert_equal controller.instance_variable_get(:@unseen_questions), 100
     assert_equal controller.instance_variable_get(:@skipped_questions), 50
     assert_equal controller.instance_variable_get(:@correct_answers), 0
     assert_equal controller.instance_variable_get(:@wrong_answers), 0
@@ -44,7 +45,7 @@ class ExamsControllerTest < ActionDispatch::IntegrationTest
     chapter = chapters(:one)
     Answer.create(question: questions(:one), user: users(:one), skipped: true)
     get progress_exams_path(item_type: 'chapter', item_id: chapter.id)
-    assert_equal controller.instance_variable_get(:@unseen_questions), 50
+    assert_equal controller.instance_variable_get(:@unseen_questions), 100
     assert_equal controller.instance_variable_get(:@skipped_questions), 50
     assert_equal controller.instance_variable_get(:@correct_answers), 0
     assert_equal controller.instance_variable_get(:@wrong_answers), 0

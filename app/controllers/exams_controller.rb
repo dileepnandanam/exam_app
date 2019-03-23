@@ -1,4 +1,5 @@
 class ExamsController < ApplicationController
+  after_action -> {mark_as_viewed(@questions)}, only: [:random_questions]
   def index
     @exams = Exam.all
   end
@@ -20,8 +21,8 @@ class ExamsController < ApplicationController
   def progress
     @total_questions = questions_scop.count
     @unseen_questions = questions_scop
-      .joins("left join answers on questions.id = answers.question_id and answers.user_id = #{current_user.id}")
-      .where('answers.id is NULL').count.to_f * 100 / @total_questions
+      .joins("left join views on questions.id = views.question_id and views.user_id = #{current_user.id}")
+      .where('views.id is NULL').count.to_f * 100 / @total_questions
     @skipped_questions = questions_scop
       .joins("inner join answers on questions.id = answers.question_id and answers.user_id = #{current_user.id}")
       .where(answers: {skipped: true}).count.to_f * 100 / @total_questions

@@ -1,7 +1,9 @@
 class QuestionsController < ApplicationController
   before_action :find_parents
+  after_action -> {mark_as_viewed(@questions)}, only: [:index]
   def index
     @questions = without_answered(@chapter.questions)
+    mark_as_viewed(@questions)
     render 'index', layout: false
   end
   
