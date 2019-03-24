@@ -1,4 +1,7 @@
 .question
+  - if question.answers.find_by(user: current_user, skipped: true)
+    .skipped-notice
+      skipped
   = simple_form_for (@answer || Answer.new), remote: true do |f|
     = f.hidden_field :question_id, value: question.id
     = f.input :option_id, label: question.name, collection: question.options.map{|o| [o.name, o.id]}, as: :radio_buttons
