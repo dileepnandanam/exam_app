@@ -37,8 +37,8 @@ class Question < ApplicationRecord
   }
 
   scope :unanswered_or_skipped_by, -> (user) {
-    joins('left join answers on questions.id = answers.question_id')
-    .where('answers.user_id = ? and answers.skipped = ? or answers.id is ?', user.id, true, nil)
+    joins("left join answers on questions.id = answers.question_id and answers.user_id = #{user.id}")
+    .where('answers.skipped = ? or answers.id is ?', true, nil)
   }
 
   def self.under(item_type, id)
